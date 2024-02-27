@@ -1,0 +1,19 @@
+/*
+* normalize.css
+*/
+// @import "../../../../node_modules/normalize.css/normalize.css";
+@import "../../../../bower_components/normalize.css/normalize.css";
+
+
+
+/*
+* Подключение нужных SCSS исходников Bootstrap 5
+*/
+@import "../../../../bower_components/bootstrap/scss/bootstrap.scss";
+
+
+
+/*
+* my scss
+*/
+@import "style/my_style.scss";
