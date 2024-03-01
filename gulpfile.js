@@ -100,19 +100,18 @@ gulp.task('js:build', function () {
         .pipe(plumber())
         .pipe(sourcemaps.init({ loadMaps: true }))
         .pipe(rigger())
+        .pipe(sourcemaps.write())
         .pipe(gulp.dest(path.build.js))
         .pipe(browserSync.stream());
 
     // Сбор минифицированного файла main.min.js
     gulp.src(path.src.js)
         .pipe(plumber())
-        .pipe(sourcemaps.init({ loadMaps: true }))
         .pipe(rigger())
         .pipe(uglify({
             toplevel: true
         }))
         .pipe(rename('main.min.js'))
-        .pipe(sourcemaps.write())
         .pipe(gulp.dest(path.build.js))
         .pipe(browserSync.stream());
 });
