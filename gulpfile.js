@@ -2,7 +2,6 @@
 const gulp = require('gulp');
 const watch = require('gulp-watch');
 const browserSync = require('browser-sync').create();
-// const sass = require('gulp-sass');
 const sass = require('gulp-sass')(require('sass'));
 const autoprefixer = require('gulp-autoprefixer');
 const cleanCSS = require('gulp-clean-css');
@@ -96,14 +95,22 @@ gulp.task('style:build', function () {
 
 // сбор js
 gulp.task('js:build', function () {
+    // Сбор исходного файла main.js
     gulp.src(path.src.js)
         .pipe(plumber())
-        .pipe(sourcemaps.init({loadMaps: true}))
+        .pipe(sourcemaps.init({ loadMaps: true }))
         .pipe(rigger())
         .pipe(gulp.dest(path.build.js))
+        .pipe(browserSync.stream());
+
+    // Сбор минифицированного файла main.min.js
+    gulp.src(path.src.js)
+        .pipe(plumber())
+        .pipe(sourcemaps.init({ loadMaps: true }))
+        .pipe(rigger())
         .pipe(uglify({
             toplevel: true
-            }))
+        }))
         .pipe(rename('main.min.js'))
         .pipe(sourcemaps.write())
         .pipe(gulp.dest(path.build.js))
