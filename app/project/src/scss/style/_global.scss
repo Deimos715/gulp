@@ -20,3 +20,9 @@ Table of Content
 body {
     background-color: $base-color;
 }
+
+.img {
+    background-image: url(../img/img.png);
+    width: 100px;
+    height: 100px;
+}
