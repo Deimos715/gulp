@@ -21,6 +21,14 @@ body {
     background-color: $base-color;
 }
 
+.wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
 .img {
     background-image: url(../img/img.png);
     width: 100px;
