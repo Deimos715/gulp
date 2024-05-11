@@ -13,7 +13,7 @@ const uglify = require('gulp-uglify');
 const rename = require('gulp-rename');
 
 
-/* пути к исходным файлам (src), к готовым файлам (build) */
+/* Пути к исходным файлам (src), к готовым файлам (build) */
 path = {
     build: {
         html: 'app/build/',
@@ -44,8 +44,8 @@ path = {
 
 //Задачи для Gulp
 
-// запуск сервера
-gulp.task('browser-sync', function() {
+// Запуск сервера
+gulp.task('browser-sync', async function() {
     browserSync.init({
         server: {
             baseDir: './app/build/'
@@ -58,8 +58,8 @@ gulp.task('browser-sync', function() {
 });
 
 
-// сбор html
-gulp.task('html:build', function () {
+// Сбор html
+gulp.task('html:build', async function () {
     gulp.src(path.src.html)
         .pipe(rigger())
         .pipe(gulp.dest(path.build.html))
@@ -67,8 +67,8 @@ gulp.task('html:build', function () {
 });
 
 
-// сбор стилей
-gulp.task('style:build', function () {
+// Сбор стилей
+gulp.task('style:build', async function () {
     gulp.src(path.src.style)
         .pipe(plumber())
         .pipe(sourcemaps.init({loadMaps: true}))
@@ -93,8 +93,8 @@ gulp.task('style:build', function () {
 });
 
 
-// сбор js
-gulp.task('js:build', function () {
+// Сбор js
+gulp.task('js:build', async function () {
     // Сбор исходного файла main.js
     gulp.src(path.src.js)
         .pipe(plumber())
@@ -117,33 +117,33 @@ gulp.task('js:build', function () {
 });
 
 
-// обработка картинок
-gulp.task('image:build', function () {
+// Обработка картинок
+gulp.task('image:build', async function () {
     gulp.src(path.src.img)
         .pipe(gulp.dest(path.build.img))
         .pipe(browserSync.stream());
 });
 
 
-// перенос шрифтов
-gulp.task('fonts:build', function() {
+// Перенос шрифтов
+gulp.task('fonts:build', async function() {
     gulp.src(path.src.fonts)//Выберем наши стили
         .pipe(gulp.dest(path.build.fonts)) //скопируем
 });
 
-// перенос плагинов
-gulp.task('plagins:build', function() {
+// Перенос плагинов
+gulp.task('plagins:build', async function() {
     gulp.src(path.src.plagins)//Выберем наши плагины
         .pipe(gulp.dest(path.build.plagins)) //скопируем
 });
 
 
-// сборка
+// Сборка
 gulp.task('build', gulp.series('html:build', 'style:build', 'js:build', 'image:build', 'fonts:build', 'plagins:build'));
 
 
-// запуск задач при изменении файлов
-gulp.task('watch', function(){
+// Запуск задач при изменении файлов
+gulp.task('watch', async function(){
     watch(path.watch.html,gulp.series('html:build'));
     watch(path.watch.style,gulp.series('style:build'));
     watch(path.watch.js,gulp.series('js:build'));
@@ -159,7 +159,7 @@ gulp.parallel('browser-sync','build','watch'));
 
 
 
-// очистка кэша
-gulp.task('cache:clear', function () {
+// Очистка кэша
+gulp.task('cache:clear', async function () {
     cache.clearAll();
 });

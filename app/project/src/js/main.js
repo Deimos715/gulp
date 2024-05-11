@@ -1,13 +1,13 @@
 /*
  * jQuery
 */
-//= ../../../../bower_components/jquery/dist/jquery.js
+//= ../../../../node_modules/jquery/dist/jquery.js
 
 
 /*
  * Bootstrap 5
 */
-//= ../../../../bower_components/bootstrap/dist/js/bootstrap.bundle.js
+//= ../../../../node_modules/bootstrap/dist/js/bootstrap.bundle.js
 
 
 /*
