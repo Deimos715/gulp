@@ -12,6 +12,8 @@ const rigger = require('gulp-rigger');
 const uglify = require('gulp-uglify');
 const rename = require('gulp-rename');
 
+//Удаление папки build
+const { exec } = require('child_process');
 
 /* Пути к исходным файлам (src), к готовым файлам (build) */
 path = {
@@ -162,4 +164,17 @@ gulp.parallel('browser-sync','build','watch'));
 // Очистка кэша
 gulp.task('cache:clear', async function () {
     cache.clearAll();
+});
+
+
+//Удаление папки build
+gulp.task('clean:build', async function () {
+    exec('rm -rf app/build', (err, stdout, stderr) => {
+        if (err) {
+            console.error(err);
+            return;
+        }
+        console.log(stdout);
+        console.error(stderr);
+    });
 });
